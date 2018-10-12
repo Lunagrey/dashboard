@@ -1,19 +1,8 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
-WORKDIR /app
-EXPOSE 8080
-
-FROM microsoft/dotnet:2.1-sdk AS build
-WORKDIR /src
-COPY ["dashboard_app/dashboard_app.csproj", "dashboard_app/"]
-RUN dotnet restore "dashboard_app/dashboard_app.csproj"
+FROM node:8.9-alpine
+ENV NODE_ENV production
+WORKDIR /home/mfourtane/Documents/3Tek/DEV/dashboard
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
 COPY . .
-WORKDIR "/src/dashboard_app"
-RUN dotnet build "dashboard_app.csproj" -c Release -o /app
-
-FROM build AS publish
-RUN dotnet publish "dashboard_app.csproj" -c Release -o /app
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "dashboard_app.dll"]
+EXPOSE 8080
+CMD npm start
