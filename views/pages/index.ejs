@@ -2,25 +2,45 @@
 <html lang="en">
 <head>
     <% include ../partials/head %>
-	<style>
+<style>
 		body {
-			height: 100%;
+			height: 1000px;			
 		}
 
-		.welcome {
+		main {
 			background-color: #0f2f2f;
-			height: 1000px;
 			width: 100%;
 			margin: 0;
 			text-align: center
 		}
-	</style>
+		.btn {
+			border: 2px solid black;
+			background-color: white;
+			color: black;
+			padding: 14px 28px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+		
+		/* Green */
+		.success {
+			border-color: #4CAF50;
+			color: green;
+		}
+		
+		.success:hover {
+			background-color: #4CAF50;
+			color: white;
+		}		
+</style>
 </head>
 <body class="container">
 <main>
-    <div class="welcome">
-		<p>Welcome to templating using EJS</p>
-    </div>
+	<div class="welcome">
+		<a href="../../routes/about">Welcome to templating using EJS</a>
+	</div>
+	<%#<%= link_to(aboutRouter) %>
+	<button class="btn success">Log in</button>
 </main>
 
 <footer>

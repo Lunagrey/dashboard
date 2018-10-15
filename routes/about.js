@@ -3,9 +3,8 @@
 */
 
 var express = require('express');
-var app = express();
+var router = express();
 
-console.log("in about");
-app.get('/about', function(req, res) {
+/* router.get('/about', function(req, res) {
         res.render('../views/pages/about');
-}); 
+}); */

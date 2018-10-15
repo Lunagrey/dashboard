@@ -8,7 +8,19 @@ var express           =     require('express')
   , bodyParser        =     require('body-parser')
   , config            =     require('./configuration/config')
   , mysql             =     require('mysql')
-  , app               =     express();
+  , app               =     express()
+  , expressWinston    =     require('express-winston')
+  , winston           =     require('winston');
+
+  // Place the express-winston logger before the router.
+app.use(expressWinston.logger({
+  transports: [
+    new winston.transports.Console({
+      json: true,
+      colorize: true
+    })
+  ]
+}));
 
 var connection = mysql.createConnection({
   host     : config.host,
@@ -19,13 +31,13 @@ var connection = mysql.createConnection({
 
 if(config.use_database==='true')
 {
-  console.log("oui");
     connection.connect();
 }
 
 passport.serializeUser(function(user, done) {
   done(null, user);
 });
+
 passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
@@ -94,6 +106,15 @@ app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
+
+app.use(expressWinston.errorLogger({
+  transports: [
+    new winston.transports.Console({
+      json: true,
+      colorize: true
+    })
+  ]
+}));
 
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
