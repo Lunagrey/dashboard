@@ -1,103 +1,56 @@
-var express           =     require('express')
-  , passport          =     require('passport')
-  , util              =     require('util')
-  , FacebookStrategy  =     require('passport-facebook').Strategy
-  , TwitterStrategy   =     require('passport-twitter').Strategy
-  , session           =     require('express-session')
-  , cookieParser      =     require('cookie-parser')
-  , bodyParser        =     require('body-parser')
-  , config            =     require('./configuration/config')
-  , mysql             =     require('mysql')
-  , app               =     express();
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+var logger = require('morgan');
 
-var connection = mysql.createConnection({
-  host     : config.host,
-  user     : config.username,
-  password : config.password,
-  database : config.database
-});
+/* var mongo = require('mongodb');
+var monk = require('monk');
+var db = monk('localhost:27017/nodetest1'); */
 
-if(config.use_database==='true')
-{
-  console.log("oui");
-    connection.connect();
-}
+var indexRouter = require('./routes/index');
+//var usersRouter = require('./routes/users');
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
-});
-passport.deserializeUser(function(obj, done) {
-  done(null, obj);
-});
+var app = express();
 
-/* passport.use(new TwitterStrategy({
-    consumerKey: config.twitter_api_key,
-    consumerSecret:config.twitter_api_secret,
-    callbackURL: config.callback_url
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
-    });
-  }
-)); */
- 
-passport.use(new FacebookStrategy({
-    clientID: config.facebook_api_key,
-    clientSecret:config.facebook_api_secret,
-    callbackURL: config.callback_url
-  },
-  function(accessToken, refreshToken, profile, done) {
-    process.nextTick(function () {
-      return done(null, profile);
-    });
-  }
-));
-
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, 'views/pages'));
 app.set('view engine', 'ejs');
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(session({ secret: 'keyboard cat', key: 'sid'}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(express.static(__dirname + '/public'));
 
-app.get('/', function(req, res){
-  res.render('index', { user: req.user });
-});
-app.get('/account', ensureAuthenticated, function(req, res){
-  res.render('account', { user: req.user });
+app.use('/', function(req, res) {
+  res.render('/views/pages/index');
 });
 
-/* app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback',
-passport.authenticate('twitter', {
-    successRedirect : '/',
-    failureRedirect: '/login'
-  }),
-  function(req, res) {
-  res.redirect('/');
+
+//app.use(logger('dev'));
+//app.use(express.json());
+//app.use(express.urlencoded({ extended: false }));
+//app.use(cookieParser());
+//app.use(express.static(path.join(__dirname, 'public')));
+
+// Make our db accessible to our router
+/* app.use(function(req,res,next){
+    req.db = db;
+    next();
 }); */
 
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { 
-       successRedirect : '/', 
-       failureRedirect: '/login' 
-  }),
-  function(req, res) {
-    res.redirect('/');
+//app.use(indexRouter);
+/*app.use('/users', usersRouter);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
 });
 
-app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
-
-function ensureAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
-}
-
-app.listen(3000);
+*/
+module.exports = app;
+app.listen(8080);
