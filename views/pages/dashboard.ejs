@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.w3-sidebar a {font-family: "Roboto", sans-serif}
+body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+</style>
+<body class="w3-content" style="max-width:1200px">
+
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+  <div class="w3-container w3-display-container w3-padding-16">
+    <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+    <h3 class="w3-wide"><b>LOGO</b></h3>
+  </div>
+  <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+    <a href="#" class="w3-bar-item w3-button">Shirts</a>
+    <a href="#" class="w3-bar-item w3-button">Dresses</a>
+    <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+      Jeans <i class="fa fa-caret-down"></i>
+    </a>
+    <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
+      <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Skinny</a>
+      <a href="#" class="w3-bar-item w3-button">Relaxed</a>
+      <a href="#" class="w3-bar-item w3-button">Bootcut</a>
+      <a href="#" class="w3-bar-item w3-button">Straight</a>
+    </div>
+    <a href="#" class="w3-bar-item w3-button">Jackets</a>
+    <a href="#" class="w3-bar-item w3-button">Gymwear</a>
+    <a href="#" class="w3-bar-item w3-button">Blazers</a>
+    <a href="#" class="w3-bar-item w3-button">Shoes</a>
+  </div>
+  <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a> 
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a> 
+  <a href="#footer"  class="w3-bar-item w3-button w3-padding">Subscribe</a>
+</nav>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
+  fjs.parentNode.insertBefore(js, fjs);
+  }
+  (document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Top menu on small screens -->
+<header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+  <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
+  <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" style="margin-left:250px">
+
+  <!-- Push down content on small screens -->
+  <div class="w3-hide-large" style="margin-top:83px"></div>
+  
+  <!-- twitter -->
+  <div style="
+	      display: inline-block;
+	      position: absolute;
+	      top: 1000px;
+	      bottom: 0;
+	      left: 600px;
+	      right: 0;
+	      width: 400px;
+	      height: 400px;
+	      margin: auto;
+	      background-color: #f3f3f3;">
+    <div>
+      <a class="twitter-timeline" data-width="400" data-height="400" data-theme="light" href="https://twitter.com/TwitterDev">Tweets by TwitterDev</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </div>
+  <div style="
+	      display: inline-block;
+              position: absolute;
+              top: 1400px;
+              bottom: 0;
+              left: 600px;
+              right: 0;
+              width: 400px;
+              height: 400px;
+              margin: auto;
+              background-color: #f3f3f3;">
+    <div>
+      <blockquote class="twitter-tweet" data-lang="fr"><p lang="en" dir="ltr"><a href=<%= twitter_quote %>>@GrandTetonNPS</a>. <a href=<%= twitter_quote %>>#nature</a> <a href=<%= twitter_quote %>>#sunset</a> <a href="http://t.co/YuKy2rcjyU">pic.twitter.com/YuKy2rcjyU</a></p>&mdash; US Department of the Interior (@Interior) <a href=<%= twitter_quote %>>>5 mai 2014</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    </div>
+  </div>
+
+  
+  <!-- facebook -->
+  
+  <div style="
+              display: inline-block;
+              position: absolute;
+              top: 0;
+              bottom: 400px;
+              left: 0;
+              right: 300px;
+              width: 400px;
+              height: 400px;
+              margin: auto;
+              background-color: #f3f3f3;">
+    <div class="fb-page" data-href=<%= facebook %> data-tabs="timeline" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
+  </div>
+  <div style="
+              display: inline-block;
+              position: absolute;
+              top: 0;
+              bottom: 400px;
+              left: 500px;
+              right: 0;
+              width: 400px;
+              height: 400px;
+              margin: auto;
+              background-color: #f3f3f3;">
+    <div class="fb-page" data-href=<%= facebook %> data-tabs="messages" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
+  </div>
+
+  <!-- YAMMER dashboard test -->
+  <div style="
+              display: inline-block;
+              position: absolute;
+              top: 1000px;
+              bottom: 0;
+              left: 0;
+              right: 300px;
+              width: 400px;
+              height: 400px;
+              margin: auto;
+              background-color: #f3f3f3;">
+    <script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
+    <div id="embedded-feed" style="height:400px;width:400px;"></div>
+    <script type="text/javascript">
+      yam.connect.embedFeed({
+      container: "#embedded-feed",
+      network: "epitech.eu",
+      feedType: "group",
+      feedId: "16041603"
+      });
+    </script>
+  </div>
+
+
+  <div style="
+              display: inline-block;
+              position: relative;
+              top: 0%;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 0.01%;
+              height: 0.01%;
+              margin: auto;
+              background-color: #f3f3f3;">
+    <script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
+    <div id="embedded-feed" style="height:400px;width:400px;"></div>
+    <script type="text/javascript">
+      yam.connect.embedFeed({
+      container: "#embedded-feed",
+      network: "epitech.eu",
+      feedType: "group",
+      feedId: <%= yammer_feedid %>
+      });
+    </script>
+  </div>
+  
+  <!-- météo sur paris-->
+  <div style="
+              display: inline-block;
+              position: absolute;
+              top: 350px;
+              bottom: 0;
+              left: 0;
+              right: 0;
+              width: 650px;
+              height: 250px;
+              margin: auto;
+              background-color: #f3f3f3;">
+    <a href="https://www.prevision-meteo.ch/meteo/localite/paris"><img src=<%= meteo %> width="650" height="250" /></a>
+  </div>
+</div>
+
+</body>
+</html>

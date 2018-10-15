@@ -5,6 +5,8 @@
 
 var express = require('express');
 var router = express();
+var aboutRouter= require('./dashboard');
+router.use(aboutRouter);
 //var aboutRouter = require('./about');
 
 //router.get('/userlist', function(req, res) {
