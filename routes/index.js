@@ -5,16 +5,11 @@
 
 var express = require('express');
 var router = express();
-//var aboutRouter = require('./about');
+var aboutRouter = require('./about');
 
-//router.get('/userlist', function(req, res) {
-//  var db = req.db;
-//  var collection = db.get('usercollection');
-//  collection.find({},{},function(e,docs){
-//      res.render('userlist', {
-//          "userlist" : docs
-//      });
-//  });
+router.use(aboutRouter);
+//router.get('/about', (req, res) => {
+//  res.render('../views/pages/about');
 //});
 
 router.get('/', (req, res) => {
@@ -26,11 +21,9 @@ router.get('/', (req, res) => {
   ];
   var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
   console.log("caca");
-//  var aboutRouter = require('./about');
   res.render('../views/pages/index', {
       drinks: drinks,
       tagline: tagline 
-      //aboutRouter: aboutRouter
   });
 });
 
