@@ -1,30 +1,43 @@
+module.exports = function(app, passport) {
+	app.get('/', (req, res) => {
+	  res.render('./index');
+	});
 
-/*
- * GET home page.
- */
+	app.get('/login', function(req, res) {
+		res.render('login.ejs', {
+			message: req.flash('loginMessage')
+		}); 
+	});
+	app.post('/login', passport.authenticate('local-login', {
+		successRedirect : '/profile',
+		failureRedirect : '/login',
+		failureFlash : true
+	}));
+	
+	app.get('/signup', function(req, res) {
+		res.render('signup.ejs', {
+			message: req.flash('signupMessage')
+		});
+	});
+	app.post('/signup', passport.authenticate('local-signup', {
+		successRedirect : '/dashboard',
+		failureRedirect : '/signup',
+		failureFlash : true
+	}));
+	
+	app.get('/dashboard', isLoggedIn, function(req, res) {
+		res.render('dashboard.ejs', {
+			user : req.user
+		});
+	});
+	app.get('/logout', function(req, res) {
+		req.logout();
+		res.redirect('/');
+	});
+}
 
-var express = require('express');
-var router = express();
-var aboutRouter = require('./about');
-
-router.use(aboutRouter);
-//router.get('/about', (req, res) => {
-//  res.render('../views/pages/about');
-//});
-
-router.get('/', (req, res) => {
-  console.log("non");
-  var drinks = [
-      { name: 'Bloody Mary', drunkness: 3 },
-      { name: 'Martini', drunkness: 5 },
-      { name: 'Scotch', drunkness: 10 }
-  ];
-  var tagline = "Any code of your own that you haven't looked at for six or more months might as well have been written by someone else.";
-  console.log("caca");
-  res.render('../views/pages/index', {
-      drinks: drinks,
-      tagline: tagline 
-  });
-});
-
-module.exports = router;
+function isLoggedIn(req, res, next) {
+	if (req.isAuthenticated())
+		return next();
+	res.redirect('/');
+}

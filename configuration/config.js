@@ -9,18 +9,14 @@ module.exports={
                 "password"              :       "",
                 "database"              :       ""
         },
-        mongodb: {
-                "database"              :       'mongodb://127.0.0.1/my_database',
-
+        twitter: {
+                "twitter-api-key"       :       "TT API ID",
+                "twitter-api-secret"    :       "TT API SECRET",
+                "callback-url"          :       "http://localhost:3000/auth/twitter/callback",
+                "use-database"          :       "false",
+                "host"                  :       "localhost",
+                "username"              :       "root",
+                "password"              :       "",
+                "database"              :       ""
         }
 }
-/* module.exports={
-        "twitter-api-key"       :       "TT API ID",
-        "twitter-api-secret"    :       "TT API SECRET",
-        "callback-url"          :       "http://localhost:3000/auth/twitter/callback",
-        "use-database"          :       "false",
-        "host"                  :       "localhost",
-        "username"              :       "root",
-        "password"              :       "",
-        "database"              :       ""
-        } */
