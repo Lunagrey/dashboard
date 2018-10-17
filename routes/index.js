@@ -46,7 +46,9 @@ module.exports = function(app, passport) {
 		var name_of_page = "CodedeBatard"; // modifiable par le nom d'une page fb, pas d'un profil
 		var facebook = "https://www.facebook.com/" + name_of_page;
 		var yammer_feedid = "16035476";
-		var twitter_quote = "https://twitter.com/OfficialPCMR/status/1051682761608757248" + ";ref_src=twsrc%5Etfw"
+	    var twitter_quote = "https://twitter.com/OfficialPCMR/status/1051682761608757248" + ";ref_src=twsrc%5Etfw"
+	    var spotify_album = "6X2wMrmcPsXnrHqlJxXKbA";
+	    var spotify = "https://open.spotify.com/embed/album/" + spotify_album;
 		var drinks = [
 			{ name: 'Bloody Mary', drunkness: 3 },
 			{ name: 'Martini', drunkness: 5 },
@@ -60,7 +62,8 @@ module.exports = function(app, passport) {
 			yammer_feedid: yammer_feedid,
 			meteo: meteo,
 		    	drinks: drinks,
-		    	tagline: tagline,
+		    tagline: tagline,
+		    spotify: spotify,
 		    	user: req.user
 	      });
 	});
