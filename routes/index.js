@@ -64,10 +64,13 @@ module.exports = function(app, passport) {
 		    	user: req.user
 	      });
 	});
-	app.get('/logout', function(req, res) {
-		req.logout();
-		res.redirect('/');
-	});
+    app.get('/logout', function(req, res) {
+	req.logout();
+	res.redirect('/');
+    });
+    app.get('/settings', function(req, res) {
+        res.render('settings.ejs');
+    });
 }
 
 function isLoggedIn(req, res, next) {
