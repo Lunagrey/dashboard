@@ -15,30 +15,35 @@ module.exports = function(passport) {
 		});
 	});
 
-	passport.use('facebook-signup', new FacebookStrategy({
+	passport.use(new FacebookStrategy({
 		clientID: configFB.facebook_api_key,
 		clientSecret: configFB.facebook_api_secret,
 		callbackURL: configFB.callback_url
 	},
 	function(accessToken, refreshToken, profile, done) {
-		process.nextTick(function () {
-			User.findOne({ 'facebook.id' :  profile.id}, function(err, user) {
+		console.log(profile);
+		process.nextTick(function() {
+		User.findOne({'facebook.id': profile.id}, function(err, user) {
 			if (err)
 				return done(err);
-			if (user)
-				return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-			else {
-				var newUser	= new User();
-				newUser.facebook.id = profile.id;
-				newUser.save(function(err) {
-				if (err)
-					throw err;
-				return done(null, newUser);
+			if (user) {
+				return done(null, false, user);
+			} else {
+				var me = new User();
+				me.local.name = profile.displayName;
+				me.facebook.id = profile.id;
+				me.save(function(err, me) {
+					if(err) 
+					
+					
+					
+					return done(err);
+					done(null, me);
 				});
-			}});
+			}
+		});
 		});
 	}));
-
 	passport.use('local-signup', new LocalStrategy({
 		usernameField : 'email',
 		passwordField : 'password',
