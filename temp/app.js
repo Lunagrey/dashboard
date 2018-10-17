@@ -32,7 +32,7 @@ var connection = mysql.createConnection({
 
 if(configFB.use_database==='true')
 {
-		connection.connect();
+	connection.connect();
 }
 
 passport.serializeUser(function(user, done) {
@@ -96,8 +96,8 @@ passport.authenticate('twitter', {
 app.get('/auth/facebook', passport.authenticate('facebook'));
 app.get('/auth/facebook/callback',
 	passport.authenticate('facebook', { 
-			 successRedirect : '/', 
-			 failureRedirect: '/login' 
+		 successRedirect : '/', 
+		 failureRedirect: '/login' 
 	}),
 	function(req, res) {
 		res.redirect('/');
