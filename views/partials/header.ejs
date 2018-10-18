@@ -1,17 +1,24 @@
-<nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
-        
-            <div class="navbar-header">
-                <a class="navbar-brand" href="#">
-                    <span class="glyphicon glyphicon glyphicon-tree-deciduous"></span>
-                    EJS Is Fun
-                </a>
-        
-                <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                </ul>
-            </div>
-        
-        </div>
-</nav>
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">DASHBOARD <i class="fa fa-caret-down"></i></button>     
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="dashboard#facebook" class="w3-bar-item w3-button">Facebook</a>
+        <a href="dashboard#twitter" class="w3-bar-item w3-button">Twitter</a>
+        <a href="dashboard#yammer" class="w3-bar-item w3-button">Yammer</a>
+        <a href="dashboard#meteo" class="w3-bar-item w3-button">Meteo</a>
+      </div>
+    </div>
+    <a href="settings" class="w3-bar-item w3-button w3-padding-large w3-hide-small">SETTINGS</a>
+    <a href="javascript:void(0)" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-search"></i></a>
+  </div>
+</div>
+
+
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#band" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">BAND</a>
+  <a href="#tour" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">TOUR</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">CONTACT</a>
+  <a href="#" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()">MERCH</a>
+</div>
