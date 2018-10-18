@@ -1,0 +1,143 @@
+ <!DOCTYPE html>
+<head>
+  <% include ../partials/head2 %>
+</head>
+
+<style>
+.w3-sidebar a {
+  font-family: "Roboto", sans-serif
+}
+
+body,h1,h2,h3,h4,h5,h6,.w3-wide {
+  font-family: "Montserrat", sans-serif;
+}
+
+.boutonmenuprincipal {
+background-color: #729EBF;
+background-image: -webkit-linear-gradient(top, #729EBF 0%, #333A40 100%);
+background-image:linear-gradient(to bottom, #729EBF 0%, #333A40 100%);
+color: white;
+border: none;
+cursor: pointer;
+padding:10px;
+margin-top:10px;
+font-size: 10px;
+}
+</style>
+
+<body>
+<header>
+		<% include ../partials/header %>
+</header>
+
+  <div style="
+	      position:relative;
+	      left: 15%;">
+    <div class="w3-container w3-green">
+      <h1>Welcome to the settings page</h1>
+      <p>enable, modify and disable widgets</p>
+    </div>
+  </div>
+
+  
+  <div class="w3-row-padding">
+  <div style="
+  display: inline-block;
+  position: relative;
+  left: 15%;
+  margin: auto;"
+  id="facebook">
+  <div class="w3-fourth">
+	<h2>Facebook widgets</h2>
+	<p>enable and disable here</p>
+    <select>
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="opel">Opel</option>
+      <option value="audi">Audi</option>
+    </select>
+ 
+	    <p>change page to prompt</p>
+	    <form action="/settings" method="post">
+          <div class="form-group">
+            <label>timeline to show</label>
+            <input type="text" class="form-control" name="timelineFB">
+          </div>
+          <div class="form-group">
+            <label>message to show</label>
+            <input type="text" class="form-control" name="messageFB">
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Upload</button>
+    	</form>
+      </div>
+    </div>
+    
+    <div style="
+                display: inline-block;
+                position: relative;
+                left: 30%;
+                margin: auto;"
+	 id="twitter">
+      <div class="w3-fourth">
+	<h2>Twitter widgets</h2>
+	<p>enable and disable here</p>
+	<p>change page to prompt</p>
+        <form action="/settings" method="post">
+          <div class="form-group">
+            <label>feed to show</label>
+            <input type="text" class="form-control" name="email">
+          </div>
+          <div class="form-group">
+            <label>tweet to show</label>
+            <input type="password" class="form-control" name="password">
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Upload</button>
+        </form>
+      </div>
+    </div>
+    
+    
+    
+    <div style="
+                display: inline-block;
+                position: relative;
+		top:400px;
+                right: 23%;
+                margin: auto;"
+	 id="yammer">
+      <div class="w3-fourth">
+	<h2>Yammer widgets</h2>
+	<p>enable and disable here</p>
+	<p>change page to prompt</p>
+        <form action="/settings" method="post">
+          <div class="form-group">
+            <label>timeline to show</label>
+            <input type="text" class="form-control" name="email">
+          </div>
+          <div class="form-group">
+            <label>username to show</label>
+            <input type="password" class="form-control" name="password">
+          </div>
+          <button type="submit" class="btn btn-warning btn-lg">Upload</button>
+        </form>
+      </div>
+    </div>
+
+    
+    <div style="
+                display: inline-block;
+                position: relative;
+		top: 250px;
+                right: 10%;
+                margin: auto;"
+	 id="meteo">
+      <div class="w3-fourth">
+	<h2>Meteo widget</h2>
+	<p>enable and disable here</p>
+</p>
+</div>
+</div>
+
+  </div>
+</body>
+</html> 

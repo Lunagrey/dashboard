@@ -23,16 +23,17 @@ var userSchema = mongoose.Schema({
     widgets         : {
         weather     : {
             city    : String,
-            Day     : Number
+            day     : Number
         },
         facebook    : {
-            account : String
+            display : Boolean,
+            page    : String
         },
         twitter    : {
-            account : String
+            display : Boolean
         },
         yammer      : {
-            account : String
+            display : Boolean
         }
     }
 });
