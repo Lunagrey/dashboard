@@ -15,7 +15,7 @@ var userSchema = mongoose.Schema({
 		id		: String
 	},
 	google    		: {
-		id		: String,
+		id		: String
 	},
 	widgets   		: {
 		weather		: {
