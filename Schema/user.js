@@ -16,9 +16,6 @@ var userSchema = mongoose.Schema({
 	},
 	google    		: {
 		id		: String,
-		token		: String,
-		email		: String,
-		name		: String
 	},
 	widgets   		: {
 		weather		: {
@@ -27,24 +24,28 @@ var userSchema = mongoose.Schema({
 			display	: Boolean
 		},
 		facebook	: {
-			display : Boolean,
-			page    : String,
-			page_com: String
+			display_page	: Boolean,
+			display_page_com: Boolean,
+			page    	: String,
+			page_com	: String
 		},
 		twitter    	: {
-			display : Boolean,
-			page	: String,
-			tweet	: String
+			display_tweet	: Boolean,
+			display_page	: Boolean,
+			page		: String,
+			tweet		: String
 		},
 		yammer		: {
-			display : Boolean,
+			display_user	: Boolean,
+			display_group	: Boolean,
 			userfeed	: String,
 			groupfeed	: String
 		},
 		spotify		: {
-			artiste	: String,
-			album	: String,
-			display : Boolean
+			display_album	: Boolean,
+			display_artiste	: Boolean,
+			artiste		: String,
+			album		: String
 		}
 	}
 });
