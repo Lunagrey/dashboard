@@ -118,9 +118,17 @@ module.exports = function(app, passport) {
 	});
 	app.get('/about', function (req, res) {
 		const fs = require('fs');
-		let rawdata = fs.readFileSync('../about.json');  
-		let student = JSON.parse(rawdata);  
-		res.send(student);
+		let rawdata = fs.readFileSync('about.json');  
+	        let student = JSON.parse(rawdata);
+	    student.server.current_time = Math.round((new Date()).getTime() / 1000);
+	    var ip = req.headers['x-forwarded-for'] || 
+		req.connection.remoteAddress || 
+		req.socket.remoteAddress ||
+		(req.connection.socket ? req.connection.socket.remoteAddress : null);
+	    if (ip == "::1")
+		ip = "127.0.0.1";
+	    student.client.host = ip;
+	    res.send(student);
 	});
 };
 	    
