@@ -22,7 +22,7 @@
 			"params": [{
 					"name":"link",
 					"type":"string"
-				}{
+				},{
 					"name":"number",
 					"type":"integer"
 				}]
