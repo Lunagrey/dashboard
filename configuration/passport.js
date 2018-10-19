@@ -1,8 +1,9 @@
-var LocalStrategy       = require('passport-local').Strategy;
-var FacebookStrategy    = require('passport-facebook').Strategy;
-//var TwitterStrategy     = require('passport-twitter').Strategy
-var User                = require('../Schema/user');
-var configFB            = require('./configFB');
+var LocalStrategy	= require('passport-local').Strategy;
+var FacebookStrategy	= require('passport-facebook').Strategy;
+var GoogleStrategy	= require( 'passport-google-oauth' ).OAuth2Strategy;
+var User		= require('../Schema/user');
+var configFB		= require('./configFB');
+var configGO		= require('./configGO');
 
 module.exports = function(passport) {
 	passport.serializeUser(function(user, done) {
@@ -21,29 +22,54 @@ module.exports = function(passport) {
 		callbackURL: configFB.callback_url
 	},
 	function(accessToken, refreshToken, profile, done) {
-		console.log(profile);
 		process.nextTick(function() {
 		User.findOne({'facebook.id': profile.id}, function(err, user) {
 			if (err)
 				return done(err);
-			if (user) {
-				return done(null, false, user);
-			} else {
+			if (user)
+				return done(null, user);
+			else {
 				var me = new User();
 				me.local.name = profile.displayName;
 				me.facebook.id = profile.id;
 				me.save(function(err, me) {
-					if(err) 
-					
-					
-					
-					return done(err);
+					if(err)
+						return done(err);
 					done(null, me);
 				});
 			}
 		});
 		});
 	}));
+
+	passport.use(new GoogleStrategy({
+		clientID: configGO.api_key,
+		clientSecret: configGO.api_secret,
+		callbackURL: configGO.callback_url
+	},
+	function (token, refreshToken, profile, done) {
+	process.nextTick(function () {
+		User.findOne({ 'google.id': profile.id }, function (err, user) {
+			if (err)
+				return done(err);
+			if (user) {
+				return done(null, user);
+			} else {
+				var newUser = new User();
+				newUser.google.id = profile.id;
+				newUser.local.name = profile.displayName;
+				newUser.local.email = profile.emails[0].value; // pull the first email
+				newUser.save(function (err) {
+					if (err)
+						throw err;
+					return done(null, newUser);
+				});
+			}
+			});
+		});
+	}));
+
+
 	passport.use('local-signup', new LocalStrategy({
 		usernameField : 'email',
 		passwordField : 'password',
@@ -60,17 +86,6 @@ module.exports = function(passport) {
 				var newUser            = new User();
 				newUser.local.email    			= email;
 				newUser.local.password = newUser.generateHash(password);
-				newUser.widgets.weather.day		= 0;
-				newUser.widgets.weather.city		= "Paris";
-				newUser.widgets.weather.display		= false;
-				newUser.widgets.facebook.page		= "";
-				newUser.widgets.facebook.page_com	= "";
-				newUser.widgets.facebook.display	= false;
-				newUser.widgets.twitter.display		= false;
-				newUser.widgets.yammer.display		= false;
-				newUser.widgets.spotify.artiste		= "";
-				newUser.widgets.spotify.album		= "";
-				newUser.widgets.spotify.display		= false;
 				newUser.save(function(err) {
 					if (err)
 						throw err;

@@ -36,7 +36,7 @@
 <div class="w3-hide-large" style="margin-top:83px"></div>
 <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:100%" id="twitter">
 <h2 class="w3-wide">TWITTER</h2>
-<% if (user.widgets.twitter.display) { %>
+<% if (user.widgets.twitter.display_page) { %>
 	<div class="twitter">
 		<div class="twitter-elem">
 			<a class="twitter-timeline" data-width="500" data-height="600" data-theme="light" href=<%= user.widgets.twitter.page %>>>
@@ -44,6 +44,10 @@
 			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
 			</script>
 		</div>
+		<% } else { %>
+		<a href="settings#twitter">Click here set twitter to Display</a>
+	<% } %>
+<% if (user.widgets.twitter.display_tweet) { %>
 		<div class="twitter-elem">
 			<blockquote class="twitter-tweet" data-lang="fr">
 				<p lang="en" dir="ltr">
@@ -66,14 +70,19 @@
 <div class="w3-black" id="facebook">
 	<div class="w3-container w3-center w3-content w3-padding-64" style="max-width:800px">
 	<h2 class="w3-wide w3-center">FACEBOOK</h2>
-	<% if (user.widgets.facebook.display) { %>
+	<% if (user.widgets.facebook.display_page) { %>
 		<div class="facebook2">
 			<div class="fb-page" data-tabs="timeline" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-href=<%= user.widgets.facebook.page %>>>
 				<blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
 					<a href="https://www.facebook.com/facebook">Facebook</a>
         </blockquote>
       </div>
-      <hr> 
+			<hr> 
+			<% } else { %>
+			<a href="settings#facebook">Click here set facebook to Display</a>
+		<% } %>	
+	<% if (user.widgets.facebook.display_page_com) { %>
+			
 			<div class="fb-page" data-tabs="messages" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-href=<%= user.widgets.facebook.page_com %>>>
 				<blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
 					<a href="https://www.facebook.com/facebook">Facebook</a>
@@ -88,7 +97,7 @@
 
 <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:100%" id="yammer">
 <h2 class="w3-wide">YAMMER</h2>
-<% if (user.widgets.yammer.display) { %>
+<% if (user.widgets.yammer.display_user) { %>
     <div class="yammer2">
       <script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
         <div id="embedded-feed" style="height:500px;width:500px;"> 
@@ -101,7 +110,18 @@
             });
           </script>
         </div>
-        <br>
+				<% } else { %>
+				<style>
+					.yammer-decal {
+						margin-left: 37%;
+						margin-right: 50%;
+					}
+				</style>
+				<a href="settings#yammer">Click here set yammer to Display</a>
+			<% } %>	
+			<br>
+				<% if (user.widgets.yammer.display_group) { %>
+				<div class="w3-center yammer-decal">
         <script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
         <div id="embedded-feed" style="height:500px;width:500px;">
 					<script type="text/javascript">
@@ -112,7 +132,8 @@
             feedId: <%= user.widgets.yammer.groupfeed %>
             });
           </script>
-          </div>
+					</div>
+					</div>
 			</div>
 			<% } else { %>
 			<a href="settings#yammer">Click here set yammer to Display</a>
@@ -135,8 +156,12 @@
 
   <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:100%" id="spotify">
 			<h2 class="w3-wide">SPOTIFY</h2>
-			<% if (user.widgets.spotify.display) { %>
-      <iframe src=<%= spotify_album %> width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+			<% if (user.widgets.spotify.display_album) { %>
+			<iframe src=<%= spotify_album %> width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+			<% } else { %>
+			<a href="settings#spotify">Click here set spotify to Display</a>
+			<% } %>	
+			<% if (user.widgets.spotify.display_artiste) { %>
 			<iframe src=<%= spotify_artist %> width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 			<% } else { %>
 				<a href="settings#spotify">Click here set spotify to Display</a>
