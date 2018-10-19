@@ -110,8 +110,10 @@
 	<div class="w3-fourth">
 		<h2>YAMMER WIDGETS</h2>
 		<form action="/settings" method="post">
-    			<label for="fname">Feed to see</label>
-    			<input type="text" id="fname" name="YMfeed" placeholder="Id of the feed...">
+    			<label for="fname">User feed to see</label>
+			    <input type="text" id="fname" name="YMfeeduser" placeholder="Id of the epitech user...">
+			<label for="fname">Group feed to see</label>
+    				<input type="text" id="fname" name="YMfeedgroup" placeholder="Id of the epitech group...">
     			<label for="country">Status</label>
     			<select id="country" name="YMstatus">
 			    	<option value="Display">Display</option>
@@ -141,9 +143,9 @@
 		<h2>SPOTIFY WIDGETS</h2>
 		<form action="/settings" method="post">
     			<label for="fname">Artiste</label>
-			<input type="text" id="fname" name="SPartiste" placeholder="ex: Patrick Sebastian...">
+			<input type="text" id="fname" name="SPartiste" placeholder="ex: artist ID...">
 			<label for="fname">Album</label>
-			<input type="text" id="fname" name="SPalbum" placeholder="ex: Ipséité...">
+			<input type="text" id="fname" name="SPalbum" placeholder="ex: album ID...">
 			<label for="country">Status</label>
 			<select id="country" name="SPstatus">
 				<option value="Display">Display</option>

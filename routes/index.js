@@ -106,18 +106,24 @@ module.exports = function(app, passport) {
 				tank.widgets.spotify.artiste = req.body.SPartiste;
 			if (req.body.SPalbum)
 				tank.widgets.spotify.album = req.body.SPalbum;
-			if (req.body.YMfeed)
-				tank.widgets.yammer.feed = req.body.YMfeed;
+			if (req.body.YMfeeduser)
+				tank.widgets.yammer.userfeed = req.body.YMfeeduser;
+			if (req.body.YMfeedgroup)
+				tank.widgets.yammer.groupfeed = req.body.YMfeedgroup;
 			tank.save(function (err, updatedTank) {
 			  if (err) return handleError(err);
 			  res.redirect('/settings');
 			});
 		});
 	});
-	app.get('/about', function(req, res) {
-		res.send('');
+	app.get('/about', function (req, res) {
+		const fs = require('fs');
+		let rawdata = fs.readFileSync('../about.json');  
+		let student = JSON.parse(rawdata);  
+		res.send(student);
 	});
-}
+};
+	    
 
 function isLoggedIn(req, res, next) {
 	if (req.isAuthenticated())

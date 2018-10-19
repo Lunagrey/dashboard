@@ -96,8 +96,8 @@
             yam.connect.embedFeed({
             container: "#embedded-feed",
             network: "epitech.eu",
-            feedType: "group",
-            feedId: "16041603"
+            feedType: "user",
+            feedId: <%= user.widgets.yammer.userfeed %>
             });
           </script>
         </div>
@@ -109,7 +109,7 @@
            container: "#embedded-feed",
            network: "epitech.eu",
             feedType: "group",
-            feedId: "16035476"
+            feedId: <%= user.widgets.yammer.groupfeed %>
             });
           </script>
           </div>

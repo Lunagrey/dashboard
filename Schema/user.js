@@ -38,7 +38,8 @@ var userSchema = mongoose.Schema({
 		},
 		yammer		: {
 			display : Boolean,
-			feed	: String
+			userfeed	: String,
+			groupfeed	: String
 		},
 		spotify		: {
 			artiste	: String,
