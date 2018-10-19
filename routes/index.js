@@ -38,19 +38,11 @@ module.exports = function(app, passport) {
 	    res.redirect('/');
 	});
 	app.get('/dashboard', isLoggedIn, function(req, res) {
-		var name_of_page = "CodedeBatard"; // modifiable par le nom d'une page fb, pas d'un profil
-		var facebook = "https://www.facebook.com/" + name_of_page;
-		var yammer_feedid = "16035476";
-		var twitter_quote = "hsttps://twitter.com/OfficialPCMR/status/1051682761608757248" + ";ref_src=twsrc%5Etfw";
-		var aboutRouter = require('./about');
-		var album = "6X2wMrmcPsXnrHqlJxXKbA";
-	    var spotify_album = "https://open.spotify.com/embed/album/" + album;
-	    var artist = "6sFIWsNpZYqfjUpaCgueju"
-	    var spotify_artist = "https://open.spotify.com/follow/1/?uri=spotify:artist:" + artist + "&size=detail&theme=light"                                                            
+		var album = req.user.widgets.spotify.album;
+		var spotify_album = "https://open.spotify.com/embed/album/" + album;
+		var artist = req.user.widgets.spotify.artiste;
+		var spotify_artist = "https://open.spotify.com/follow/1/?uri=spotify:artist:" + artist + "&size=detail&theme=light"                                                            
 		res.render('dashboard.ejs', {
-			twitter_quote: twitter_quote,
-			facebook: facebook,
-			yammer_feedid: yammer_feedid,
 			user: req.user,
 			spotify_album: spotify_album,
 			spotify_artist: spotify_artist			    
@@ -65,27 +57,66 @@ module.exports = function(app, passport) {
 	User.findById(req.user._id, function(err, user) {
 		if (err)
 			return next(err);
-		console.log(user.mail);
 		return res.render('settings.ejs', {
 			user: user
 	});
-    })});
-    app.post('/settings', isLoggedIn, function(req, res) {
-	console.log(req.session.passport.user);
-	console.log("settings post");
-	console.log(req.body);
-	console.log(req.body.timelineFB);
-	User.findById(req.session.passport.user, function (err, tank) {
-		if (err) return handleError(err);
-		console.log(tank);
-		tank.widgets.weather.day = "3";
-		tank.save(function (err, updatedTank) {
-		  if (err) return handleError(err);
-		  console.log(tank.mail);
-		  res.redirect('/settings');
+	})});
+	app.post('/settings', isLoggedIn, function(req, res) {
+		User.findById(req.session.passport.user, function (err, tank) {
+			if (err) return handleError(err);
+			console.log(tank);
+			if (req.body.TTstatus)
+				if (req.body.TTstatus == "Display")
+					tank.widgets.twitter.display = true;
+				else	
+					tank.widgets.twitter.display = false;
+			if (req.body.FBstatus)
+				if (req.body.FBstatus == "Display")
+					tank.widgets.facebook.display = true;
+				else	
+					tank.widgets.facebook.display = false;
+			if (req.body.YMstatus)
+				if (req.body.YMstatus == "Display")
+					tank.widgets.yammer.display = true;
+				else	
+					tank.widgets.yammer.display = false;
+			if (req.body.MTstatus)
+				if (req.body.MTstatus == "Display")
+					tank.widgets.weather.display = true;
+				else	
+					tank.widgets.weather.display = false;
+			if (req.body.SPstatus)
+				if (req.body.SPstatus == "Display")
+					tank.widgets.spotify.display = true;
+				else	
+					tank.widgets.spotify.display = false;
+			if (req.body.FBpage)
+				tank.widgets.facebook.page = req.body.FBpage;
+			if (req.body.FBpage_com)
+			tank.widgets.facebook.page_com = req.body.FBpage_com;
+			if (req.body.SPartiste)
+				tank.widgets.spotify.artiste = req.body.SPartiste;
+			if (req.body.SPalbum)
+				tank.widgets.spotify.album = req.body.SPalbum;
+			if (req.body.TTpage)
+				tank.widgets.twitter.page = req.body.TTpage;
+			if (req.body.TTtweet)
+				tank.widgets.twitter.tweet = req.body.TTtweet;
+			if (req.body.SPartiste)
+				tank.widgets.spotify.artiste = req.body.SPartiste;
+			if (req.body.SPalbum)
+				tank.widgets.spotify.album = req.body.SPalbum;
+			if (req.body.YMfeed)
+				tank.widgets.yammer.feed = req.body.YMfeed;
+			tank.save(function (err, updatedTank) {
+			  if (err) return handleError(err);
+			  res.redirect('/settings');
+			});
 		});
 	});
-    });
+	app.get('/about', function(req, res) {
+		res.send('');
+	});
 }
 
 function isLoggedIn(req, res, next) {

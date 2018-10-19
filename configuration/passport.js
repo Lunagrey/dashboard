@@ -62,10 +62,15 @@ module.exports = function(passport) {
 				newUser.local.password = newUser.generateHash(password);
 				newUser.widgets.weather.day		= 0;
 				newUser.widgets.weather.city		= "Paris";
+				newUser.widgets.weather.display		= false;
 				newUser.widgets.facebook.page		= "";
+				newUser.widgets.facebook.page_com	= "";
 				newUser.widgets.facebook.display	= false;
 				newUser.widgets.twitter.display		= false;
 				newUser.widgets.yammer.display		= false;
+				newUser.widgets.spotify.artiste		= "";
+				newUser.widgets.spotify.album		= "";
+				newUser.widgets.spotify.display		= false;
 				newUser.save(function(err) {
 					if (err)
 						throw err;
