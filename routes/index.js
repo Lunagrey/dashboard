@@ -40,12 +40,12 @@ module.exports = function(app, passport) {
 
 	app.get('/auth/google', passport.authenticate('google', { scope: ["profile", "email"] }));
 	app.get('/auth/google/callback',
-	  	passport.authenticate('google', { 
-	       		successRedirect : '/dashboard', 
-	       		failureRedirect: '/login'
-	  	}),
-	  	function(req, res) {
-		res.redirect('/');
+	passport.authenticate('google', { 
+		successRedirect : '/dashboard', 
+		failureRedirect: '/login'
+	}),
+		function(req, res) {
+			res.redirect('/');
 	});
 
 	app.get('/dashboard', function(req, res) {
