@@ -46,6 +46,7 @@ module.exports = function(app, passport) {
 			user: req.user,
 			spotify_album: spotify_album,
 			spotify_artist: spotify_artist			    
+
 	      });
 	});
     	app.get('/logout', isLoggedIn, function(req, res) {
