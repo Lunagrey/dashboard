@@ -43,9 +43,9 @@ module.exports = function(passport) {
 	}));
 
 	passport.use(new GoogleStrategy({
-		clientID: configGO.api_key,
-		clientSecret: configGO.api_secret,
-		callbackURL: configGO.callback_url
+		clientID: "547694208308-1chcgb2ki7h3d35m8h2cquqj6p4gelgl.apps.googleusercontent.com",
+		clientSecret: "PKiwsUv3Vw2hMIbHxrWbLvSp",
+		callbackURL: "http://localhost:8080/auth/google/callback"
 	},
 	function (token, refreshToken, profile, done) {
 	process.nextTick(function () {
