@@ -3,167 +3,42 @@
 <head>
   <% include ../partials/head2 %>
 </head>
-
-
 <body>
 <header>
 	<% include ../partials/header %>
 </header>
-
-<div id="fb-root"></div>
-<script>
-(function(d, s, id) {
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) return;
-	js = d.createElement(s); js.id = id;
-	js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
-	fjs.parentNode.insertBefore(js, fjs);
-	}
-	(document, 'script', 'facebook-jssdk'));
-</script>
-<script type="text/javascript">
+<!--<script type="text/javascript">
   setInterval(function() { location.reload(true); }, 200000);
-</script>
+</script> -->
 <style>
-	.twitter, .facebook {
+  .fb-page {
+  display: flex;
+  justify-content: center;
+}
+	.twitter, .yammer2{
 		display: inline-block;
 	}
-
-	.twitter-elem, .fb-page {
+	.twitter-elem, .embedded-feed{
 		float: left;
 	}
 </style>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v3.1';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 <div class="w3-main">
 
 <div class="w3-hide-large" style="margin-top:83px"></div>
-
-	<!-- facebook -->
-	
-	<div style="
-		display: inline-block;
-		position: absolute;
-		top: 0;
-		bottom: 400px;
-		left: 5%;
-		right: 0%;
-		width: 42%;
-		height: 42%;
-		 margin: auto;"
-		 id="facebook">
-		<div class="fb-page" data-href=<%= facebook %> data-tabs="timeline" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
-	</div>
-	<div style="
-		display: inline-block;
-		position: absolute;
-		top: 0;
-		bottom: 400px;
-		left: 45%;
-		right: 0;
-		width: 42%;
-		height: 42%;
-		margin: auto;
-		">
-		<div class="fb-page" data-href=<%= facebook %> data-tabs="messages" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false"><blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/facebook">Facebook</a></blockquote></div>
-	</div>
-
-	<!-- YAMMER dashboard test -->
-	<div style="
-		display: inline-block;
-		position: relative;
-		top: 000px;
-		bottom: 0;
-		left: 0;
-		right: 40%;
-		width: 42%;
-		height: 42%;
-		margin: auto;
-		background-color: #f3f3f3;"
-		id="yammer">
-		<script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
-		<div id="embedded-feed" style="height:400px;width:400px;"></div>
-		<script type="text/javascript">
-			yam.connect.embedFeed({
-			container: "#embedded-feed",
-			network: "epitech.eu",
-			feedType: "group",
-			feedId: "16041603"
-			});
-		</script>
-	</div>
-
-
-	<div style="
-		display: inline-block;
-		position: relative;
-		top: 1000px;
-		bottom: 0;
-		left: 0;
-		right: 0%;
-		width: 42%;
-		height: 42%;
-		margin: auto;
-		">
-		<script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
-		<div id="embedded-feed" style="height:400px;width:400px;"></div>
-		<script type="text/javascript">
-			yam.connect.embedFeed({
-			container: "#embedded-feed",
-			network: "epitech.eu",
-			feedType: "group",
-			feedId: <%= yammer_feedid %>
-			});
-		</script>
-	</div>
-	
-	<!-- météo sur paris-->
-	<div style="
-		display: inline-block;
-		position: relative;
-		top: 100px;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		width: 70%;
-		height: 40%;
-		margin: auto;"
-		id="meteo">
-		<a href="https://www.accuweather.com/en/fr/paris/623/biking-current-weather/623" class="aw-widget-legal">
-		</a><div id="awtd1539706660321" class="aw-widget-36hour"  data-locationkey="" data-unit="C" data-language="fr" data-useip="true" data-uid="awtd1539706660321" data-editlocation="true" data-lifestyle="biking"></div><script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
-	</div>  
-	<div class="w3-content" style="max-width:2000px;margin-top:46px">
-
-	<div style="
-       display: inline-block;
-       position: relative;
-       top: 100px;
-       bottom: 0;
-       left: 0;
-       right: 0;
-       width: 100%;
-       height: 100%;
-       margin: auto;"
-       id="spotify">
-    <iframe src=<%= spotify_album %> width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-    </div>
-  <div style="
-       display: inline-block;
-       position: relative;
-       top: 0;
-       bottom: 300px;
-       left: 40%;
-       right: 0%;
-       margin: auto;"
-       id="spotify">
-    <iframe src=<%= spotify_artist %> width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
-    </div>
-
-  <!-- The Band Section -->
 <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:100%" id="twitter">
-	<h2 class="w3-wide">TWITTER</h2>
+<h2 class="w3-wide">TWITTER</h2>
+<% if (user.widgets.twitter.display) { %>
 	<div class="twitter">
 		<div class="twitter-elem">
-			<a class="twitter-timeline" data-width="500" data-height="600" data-theme="light" href="https://twitter.com/TwitterDev">
-				Tweets by TwitterDev
+			<a class="twitter-timeline" data-width="500" data-height="600" data-theme="light" href=<%= user.widgets.twitter.page %>>>
 			</a>
 			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8">
 			</script>
@@ -171,95 +46,102 @@
 		<div class="twitter-elem">
 			<blockquote class="twitter-tweet" data-lang="fr">
 				<p lang="en" dir="ltr">
-					<a href=<%= twitter_quote %>>@GrandTetonNPS</a>. 
-					<a href=<%= twitter_quote %>>#nature</a> 
-					<a href=<%= twitter_quote %>>#sunset</a> 
+					<a href=<%= user.widgets.twitter.page %>>@GrandTetonNPS</a>. 
+					<a href=<%= user.widgets.twitter.page %>>#nature</a> 
+					<a href=<%= user.widgets.twitter.page %>>#sunset</a> 
 					<a href="http://t.co/YuKy2rcjyU">pic.twitter.com/YuKy2rcjyU</a>
 				</p>
 				&mdash; US Department of the Interior (@Interior) 
-				<a href=<%= twitter_quote %>>>5 mai 2014</a>
+				<a href=<%= user.widgets.twitter.tweet %>>>5 mai 2014</a>
 			</blockquote>
 			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
+		<% } else { %>
+			<a href="settings#twitter">Click here set twitter to Display</a>
+		<% } %>
 	</div>
 </div>
 
 <div class="w3-black" id="facebook">
-  <!-- The Tour Section -->
-	<div class="w3-container w3-content w3-padding-64" style="max-width:800px">
-		<h2 class="w3-wide w3-center">FACEBOOK</h2>
-		<div class="facebook">
-			<div class="fb-page" data-tabs="timeline" data-width="600" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-href=<%= facebook %>>>
+	<div class="w3-container w3-center w3-content w3-padding-64" style="max-width:800px">
+	<h2 class="w3-wide w3-center">FACEBOOK</h2>
+	<% if (user.widgets.facebook.display) { %>
+		<div class="facebook2">
+			<div class="fb-page" data-tabs="timeline" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-href=<%= user.widgets.facebook.page %>>>
+				<blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
+					<a href="https://www.facebook.com/facebook">Facebook</a>
+        </blockquote>
+      </div>
+      <hr> 
+			<div class="fb-page" data-tabs="messages" data-width="400" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-href=<%= user.widgets.facebook.page_com %>>>
 				<blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
 					<a href="https://www.facebook.com/facebook">Facebook</a>
 				</blockquote>
 			</div>
-			<div class="fb-page" data-tabs="messages" data-width="600" data-height="400" data-small-header="true" data-adapt-container-width="true" data-hide-cover="true" data-show-facepile="false" data-href=<%= facebook %>>>
-				<blockquote cite="https://www.facebook.com/facebook" class="fb-xfbml-parse-ignore">
-					<a href="https://www.facebook.com/facebook">Facebook</a>
-				</blockquote>
-			</div>
-		</div>			
-	</div>
-</div>
-
-  <!-- Ticket Modal -->
-<div id="yammer" class="w3-container w3-content w3-center">
-	<div class="w3-modal-content w3-animate-top w3-card-4">
-		<h2 class="w3-wide">YAMMER</h2>
-		<div class="yammer">
-			<script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
-			<div id="embedded-feed" style="height:400px;width:400px;"></div>
-			<script type="text/javascript">
-				yam.connect.embedFeed({
-				container: "#embedded-feed",
-				network: "epitech.eu",
-				feedType: "group",
-				feedId: "16041603"
-				});
-			</script>
-			<script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
-			<div id="embedded-feed" style="height:400px;width:400px;"></div>
-			<script type="text/javascript">
-				yam.connect.embedFeed({
-				container: "#embedded-feed",
-				network: "epitech.eu",
-				feedType: "group",
-				feedId: <%= yammer_feedid %>
-				});
-			</script>
 		</div>
+		<% } else { %>
+			<a href="settings#facebook">Click here set facebook to Display</a>
+		<% } %>	
 	</div>
 </div>
 
-  <!-- The Contact Section -->
-  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" id="contact">
-    <h2 class="w3-wide w3-center">CONTACT</h2>
-    <p class="w3-opacity w3-center"><i>Fan? Drop a note!</i></p>
-    <div class="w3-row w3-padding-32">
-      <div class="w3-col m6 w3-large w3-margin-bottom">
-        <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
-        <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
-        <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
-      </div>
-      <div class="w3-col m6">
-        <form action="/action_page.php" target="_blank">
-          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
-            </div>
-            <div class="w3-half">
-              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
-            </div>
+<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:100%" id="yammer">
+<h2 class="w3-wide">YAMMER</h2>
+<% if (user.widgets.yammer.display) { %>
+    <div class="yammer2">
+      <script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
+        <div id="embedded-feed" style="height:500px;width:500px;"> 
+          <script type="text/javascript">
+            yam.connect.embedFeed({
+            container: "#embedded-feed",
+            network: "epitech.eu",
+            feedType: "group",
+            feedId: "16041603"
+            });
+          </script>
+        </div>
+        <br>
+        <script type="text/javascript" src="https://c64.assets-yammer.com/assets/platform_embed.js"></script>
+        <div id="embedded-feed" style="height:500px;width:500px;">
+					<script type="text/javascript">
+           yam.connect.embedFeed({
+           container: "#embedded-feed",
+           network: "epitech.eu",
+            feedType: "group",
+            feedId: "16035476"
+            });
+          </script>
           </div>
-          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
-          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
-        </form>
-      </div>
-    </div>
+			</div>
+			<% } else { %>
+			<a href="settings#yammer">Click here set yammer to Display</a>
+		<% } %>	
   </div>
-  
-<!-- End Page Content -->
+
+
+  <div class="w3-grey" id="meteo">
+  <div class="w3-container w3-center w3-content w3-padding-64" style="max-width:800px">
+		<h2 class="w3-wide w3-center" style="color:white;">METEO</h2>
+	<% if (user.widgets.weather.display) { %>		
+      <a href="https://www.accuweather.com/en/fr/paris/623/biking-current-weather/623" class="aw-widget-legal">
+      </a>
+			<div id="awtd1539706660321" class="aw-widget-36hour"  data-locationkey="" data-unit="C" data-language="fr" data-useip="true" data-uid="awtd1539706660321" data-editlocation="true" data-lifestyle="biking"></div><script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
+				<% } else { %>
+				<a href="settings#meteo">Click here set meteo to Display</a>
+			<% } %>	
+	  </div>  
+  </div> 
+
+  <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:100%" id="spotify">
+			<h2 class="w3-wide">SPOTIFY</h2>
+			<% if (user.widgets.spotify.display) { %>
+      <iframe src=<%= spotify_album %> width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+			<iframe src=<%= spotify_artist %> width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+			<% } else { %>
+				<a href="settings#spotify">Click here set spotify to Display</a>
+			<% } %>	
+  </div>
+
 </div>
 	<% include ../partials/footer %>
 </body>
