@@ -1,23 +1,10 @@
 version: '3'
 services:
-  # web:
-  #   build: .
-  #   ports:
-  #    - "8080:8080"
-  #   networks:
-  #     vpcbr:
-  #       ipv4_address: 10.5.0.6
-  Mongo: 
-    image: "mongo"
-    ports:
-     - "8001:27017"
-    networks:
-      vpcbr:
-        ipv4_address: 10.5.0.5
-
-networks:
-  vpcbr:
-    driver: bridge
-    ipam:
-     config:
-       - subnet: 10.5.0.0/16
+        web:
+                build: .
+                ports:
+                        - "8080:8080"  
+                depends_on:
+                        - "db"
+        db:
+                image: "mongo"
