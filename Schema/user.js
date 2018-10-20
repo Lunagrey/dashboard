@@ -17,6 +17,24 @@ var userSchema = mongoose.Schema({
 	google    		: {
 		id		: String
 	},
+	instagram    		: {
+		id		: String
+	},
+	github    		: {
+		id		: String
+	},
+	office365    		: {
+		id		: String
+	},
+	yammer    		: {
+		id		: String
+	},
+	linkedin    		: {
+		id		: String
+	},
+	Steam   		: {
+		id		: String
+	},
 	widgets   		: {
 		weather		: {
 			city    : String,
