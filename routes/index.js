@@ -103,6 +103,14 @@ module.exports = function(app, passport) {
 		}),
 	);
 
+	app.get("/auth/twitch", passport.authenticate("twitch", {forceVerify: true}));
+	app.get("/auth/twitch/callback", passport.authenticate("twitch", {
+			successRedirect : '/dashboard', 
+			failureRedirect: '/login'
+		}),
+	);
+
+
 	app.get('/dashboard', isLoggedIn, function(req, res) {
 		var album = req.user.widgets.spotify.album;
 		var spotify_album = "https://open.spotify.com/embed/album/" + album;

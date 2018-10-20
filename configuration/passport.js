@@ -8,6 +8,7 @@ var YammerStrategy	= require('passport-yammer').Strategy;
 var LinkedinStrategy	= require('passport-linkedin-oauth2').Strategy;
 var DailymotionStrategy = require('passport-dailymotion').Strategy;
 var DeezerStrategy	= require('passport-deezer').Strategy;
+var TwitchStrategy	= require("passport-twitch").Strategy;
 var User		= require('../Schema/user');
 var configFB		= require('./configFB');
 var configGO		= require('./configGO');
@@ -269,6 +270,35 @@ module.exports = function(passport) {
 					var newUser = new User();
 					newUser.deezer.id = profile.id;
 					newUser.local.name = profile.name;
+					newUser.save(function (err, newUser) {
+						if (err)
+							throw err;
+						return done(null, newUser);
+					});
+				}
+			});
+		});
+	}));
+
+	passport.use(new TwitchStrategy({
+		clientID: "006mj45bhlmaablrb3kp4k5nh7uscb",
+		clientSecret: "f2szac4m8gziam69q3h681elf97z70",
+		callbackURL: "http://localhost:8080/auth/twitch/callback",
+		scope: "user_read"
+	},
+	function (token, refreshToken, profile, done) {
+		process.nextTick(function() {
+			User.findOne({ 'twitch.id': profile.id }, function (err, user) {
+				if (err)
+					return done(err);
+				if (user) {
+					user.local.name = profile.display_name;
+					return done(null, user);
+				}
+				else {
+					var newUser = new User();
+					newUser.twitch.id = profile.id;
+					newUser.local.name = profile.display_name;
 					newUser.save(function (err, newUser) {
 						if (err)
 							throw err;
