@@ -174,7 +174,7 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 
-	app.get('/about', function (req, res) {
+	app.get('/about.json', function (req, res) {
 		const fs = require('fs');
 		let rawdata = fs.readFileSync('about.json');  
 	        let student = JSON.parse(rawdata);
