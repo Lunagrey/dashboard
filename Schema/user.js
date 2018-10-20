@@ -35,6 +35,9 @@ var userSchema = mongoose.Schema({
 	steam   		: {
 		id		: String
 	},
+	deezer   		: {
+		id		: String
+	},
 	widgets   		: {
 		weather		: {
 			city    : String,
