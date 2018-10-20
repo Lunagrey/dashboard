@@ -133,21 +133,24 @@ module.exports = function(passport) {
 	}));
 
 	passport.use(new SteamStrategy({
-		returnURL: 'http://localhost:8080/auth/steam/callback',
+		returnURL: 'http://localhost:8080/auth/steam/return',
 		realm: 'http://localhost:8080/',
 		apiKey: "E0703403C5956CCD901C82209B59C25E"
 	},
 	function (identifier, profile, done) {
 		process.nextTick(function() {
-			User.findOne({ 'github.id': identifier }, function (err, user) {
+			User.findOne({ 'steam.id': identifier }, function (err, user) {
 				if (err)
 					return done(err);
-				if (user)
+				if (user) {
+					user.local.name = profile.realname;
 					return done(null, user);
+				}
 				else {
 					console.log(profile);
 					var newUser = new User();
-					newUser.github.id = identifier;
+					newUser.steam.id = identifier;
+					user.local.name = profile.realname;
 					newUser.save(function (err, newUser) {
 						if (err)
 							throw err;

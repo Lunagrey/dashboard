@@ -57,24 +57,22 @@ module.exports = function(app, passport) {
 
 	app.get('/auth/github', passport.authenticate('github'));
 	app.get('/auth/github/callback', 
-	 passport.authenticate('github', {
+		passport.authenticate('github', {
 			successRedirect : '/dashboard', 
 			failureRedirect: '/login'
 		}),
 	);
 
-	app.get('/auth/steam',
-  	passport.authenticate('steam'),
+	app.get('/auth/steam', passport.authenticate('steam'),
   		function(req, res) {
   	});
 
 	app.get('/auth/steam/return',
-	passport.authenticate('steam', { failureRedirect: '/login' }),
-	function(req, res) {
-		res.redirect('/');
-	});
-
-	
+		passport.authenticate('steam', {
+			successRedirect : '/dashboard', 
+			failureRedirect: '/login'
+		}),
+	);
 
 	app.get('/dashboard', isLoggedIn, function(req, res) {
 		var album = req.user.widgets.spotify.album;
