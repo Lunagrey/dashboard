@@ -1,9 +1,10 @@
 var LocalStrategy	= require('passport-local').Strategy;
 var FacebookStrategy	= require('passport-facebook').Strategy;
+var GoogleStrategy	= require( 'passport-google-oauth' ).OAuth2Strategy;
 var InstagramStrategy	= require('passport-instagram').Strategy;
 var GithubStrategy	= require('passport-github').Strategy;
 var SteamStrategy	= require('passport-steam').Strategy;
-var GoogleStrategy	= require( 'passport-google-oauth' ).OAuth2Strategy;
+var YammerStrategy	= require('passport-yammer').Strategy;
 var User		= require('../Schema/user');
 var configFB		= require('./configFB');
 var configGO		= require('./configGO');
@@ -50,8 +51,8 @@ module.exports = function(passport) {
 	var GOOGLE_CLIENT_SECRET = configGO.api_secret;
 
 	passport.use(new GoogleStrategy({
-		clientID: "547694208308-1chcgb2ki7h3d35m8h2cquqj6p4gelgl.apps.googleusercontent.com",
-		clientSecret: "PKiwsUv3Vw2hMIbHxrWbLvSp",
+		clientID: GOOGLE_CLIENT_ID,
+		clientSecret: GOOGLE_CLIENT_SECRET,
 		callbackURL: "http://localhost:8080/auth/google/callback"
 	},
 	function (token, refreshToken, profile, done) {
@@ -151,6 +152,32 @@ module.exports = function(passport) {
 					var newUser = new User();
 					newUser.steam.id = identifier;
 					user.local.name = profile.realname;
+					newUser.save(function (err, newUser) {
+						if (err)
+							throw err;
+						return done(null, newUser);
+					});
+				}
+			});
+		});
+	}));
+
+	passport.use(new YammerStrategy({
+		clientID: "FQVsO198pdAxbGbGUMQ",
+		clientSecret: "TcOYia4hqImtT5SGSAJAHAybw79Dox0Vr2EvlmH3dk",
+		callbackURL: "http://localhost:8080/auth/yammer/callback"
+	},
+	function (token, refreshToken, profile, done) {
+		process.nextTick(function() {
+			User.findOne({ 'yammer.id': profile.id }, function (err, user) {
+				if (err)
+					return done(err);
+				if (user)
+					return done(null, user);
+				else {
+					console.log(profile);
+					var newUser = new User();
+					newUser.yammer.id = profile.id;
 					newUser.save(function (err, newUser) {
 						if (err)
 							throw err;
