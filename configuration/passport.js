@@ -50,8 +50,8 @@ module.exports = function(passport) {
 	var GOOGLE_CLIENT_SECRET = configGO.api_secret;
 
 	passport.use(new GoogleStrategy({
-		clientID: GOOGLE_CLIENT_ID,
-		clientSecret: GOOGLE_CLIENT_SECRET,
+		clientID: "547694208308-1chcgb2ki7h3d35m8h2cquqj6p4gelgl.apps.googleusercontent.com",
+		clientSecret: "PKiwsUv3Vw2hMIbHxrWbLvSp",
 		callbackURL: "http://localhost:8080/auth/google/callback"
 	},
 	function (token, refreshToken, profile, done) {
