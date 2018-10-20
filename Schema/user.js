@@ -37,8 +37,6 @@ var userSchema = mongoose.Schema({
 	},
 	widgets   		: {
 		weather		: {
-			city    : String,
-			day     : Number,
 			display	: Boolean
 		},
 		facebook	: {
@@ -48,8 +46,8 @@ var userSchema = mongoose.Schema({
 			page_com	: String
 		},
 		twitter    	: {
-			display_tweet	: Boolean,
 			display_page	: Boolean,
+			display_tweet	: Boolean,
 			page		: String,
 			tweet		: String
 		},
