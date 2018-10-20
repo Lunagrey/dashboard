@@ -91,6 +91,16 @@ module.exports = function(app, passport) {
 		}),
 	);
 
+	app.get('/auth/dailymotion',
+  		passport.authenticate('dailymotion'));
+
+	app.get('/auth/dailymotion/callback',
+  		passport.authenticate('dailymotion', {
+			successRedirect : '/dashboard', 
+			failureRedirect: '/login'
+		}),
+	);
+
 	app.get('/dashboard', isLoggedIn, function(req, res) {
 		var album = req.user.widgets.spotify.album;
 		var spotify_album = "https://open.spotify.com/embed/album/" + album;
@@ -182,6 +192,12 @@ module.exports = function(app, passport) {
 				res.redirect('/dashboard');
 			});
 		});
+	});
+
+	app.get('/profil', isLoggedIn, function(req, res) {
+		res.render('profil.ejs', {
+			user: req.session.passport.user
+		}); 
 	});
 
 	app.get('/logout', function(req, res) {
