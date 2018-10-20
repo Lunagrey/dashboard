@@ -32,7 +32,7 @@ var userSchema = mongoose.Schema({
 	linkedin    		: {
 		id		: String
 	},
-	Steam   		: {
+	steam   		: {
 		id		: String
 	},
 	widgets   		: {
