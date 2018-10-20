@@ -74,6 +74,8 @@ module.exports = function(app, passport) {
 		res.redirect('/');
 	});
 
+	
+
 	app.get('/dashboard', isLoggedIn, function(req, res) {
 		var album = req.user.widgets.spotify.album;
 		var spotify_album = "https://open.spotify.com/embed/album/" + album;
