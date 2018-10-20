@@ -29,6 +29,8 @@
     "passport-google-oauth": "^1.0.0",
     "passport-google-oauth2": "^0.1.6",
     "passport-instagram": "^1.0.0",
+    "passport-linkedin": "^1.0.0",
+    "passport-linkedin-oauth2": "^1.5.0",
     "passport-local": "~1.0.0",
     "passport-steam": "^1.0.10",
     "passport-twitter": "~1.0.4",
