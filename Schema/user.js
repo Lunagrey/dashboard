@@ -38,6 +38,9 @@ var userSchema = mongoose.Schema({
 	deezer   		: {
 		id		: String
 	},
+	twitch   		: {
+		id		: String
+	},
 	widgets   		: {
 		weather		: {
 			display	: Boolean
