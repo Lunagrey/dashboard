@@ -90,8 +90,10 @@ module.exports = function(passport) {
 			User.findOne({ 'instagram.id': profile.id }, function (err, user) {
 				if (err)
 					return done(err);
-				if (user)
+				if (user) {
+					user.local.name = profile.displayName;
 					return done(null, user);
+				}
 				else {
 					var newUser = new User();
 					console.log(profile);
@@ -231,12 +233,13 @@ module.exports = function(passport) {
 				if (err)
 					return done(err);
 				if (user) {
+					user.local.name = profile.dispkayName;
 					return done(null, user);
 				}
 				else {
-					console.log(profile);
 					var newUser = new User();
 					newUser.dailymotion.id = profile.id;
+					newUser.local.name = profile.dispkayName;
 					newUser.save(function (err, newUser) {
 						if (err)
 							throw err;
@@ -261,7 +264,8 @@ module.exports = function(passport) {
 					return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
 				} else {
 					var newUser            = new User();
-					newUser.local.email    			= email;
+					newUser.local.email    = email;
+					newUser.local.name    	= email;
 					newUser.local.password = newUser.generateHash(password);
 					newUser.save(function(err) {
 						if (err)
