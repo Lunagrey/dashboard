@@ -83,6 +83,14 @@ module.exports = function(app, passport) {
 		}),
 	);
 
+	app.get('/auth/linkedin', passport.authenticate('linkedin'));
+	app.get('/auth/linkedin/callback', 
+  		passport.authenticate('linkedin', {
+			successRedirect : '/dashboard', 
+			failureRedirect: '/login'
+		}),
+	);
+
 	app.get('/dashboard', isLoggedIn, function(req, res) {
 		var album = req.user.widgets.spotify.album;
 		var spotify_album = "https://open.spotify.com/embed/album/" + album;

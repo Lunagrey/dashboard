@@ -5,6 +5,7 @@ var InstagramStrategy	= require('passport-instagram').Strategy;
 var GithubStrategy	= require('passport-github').Strategy;
 var SteamStrategy	= require('passport-steam').Strategy;
 var YammerStrategy	= require('passport-yammer').Strategy;
+var LinkedinStrategy	= require('passport-linkedin-oauth2').Strategy;
 var User		= require('../Schema/user');
 var configFB		= require('./configFB');
 var configGO		= require('./configGO');
@@ -180,6 +181,34 @@ module.exports = function(passport) {
 					var newUser = new User();
 					newUser.yammer.id = profile.id;
 					newUser.local.name = profile.full_name;
+					newUser.save(function (err, newUser) {
+						if (err)
+							throw err;
+						return done(null, newUser);
+					});
+				}
+			});
+		});
+	}));
+
+	passport.use(new LinkedinStrategy({
+		clientID: "77bnar8pn8hpc0",
+		clientSecret: "GvFtTsI9cVcDct4l",
+		callbackURL: "http://localhost:8080/auth/linkedin/callback"
+	},
+	function (token, refreshToken, profile, done) {
+		process.nextTick(function() {
+			User.findOne({ 'linkedin.id': profile.id }, function (err, user) {
+				if (err)
+					return done(err);
+				if (user) {
+					user.local.name = profile.formattedName;
+					return done(null, user);
+				}
+				else {
+					var newUser = new User();
+					newUser.linkedin.id = profile.id;
+					newUser.local.name = profile.formattedName;
 					newUser.save(function (err, newUser) {
 						if (err)
 							throw err;
