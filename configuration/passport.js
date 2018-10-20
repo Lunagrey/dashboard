@@ -172,12 +172,14 @@ module.exports = function(passport) {
 			User.findOne({ 'yammer.id': profile.id }, function (err, user) {
 				if (err)
 					return done(err);
-				if (user)
+				if (user) {
+					user.local.name = profile.full_name;
 					return done(null, user);
+				}
 				else {
-					console.log(profile);
 					var newUser = new User();
 					newUser.yammer.id = profile.id;
+					newUser.local.name = profile.full_name;
 					newUser.save(function (err, newUser) {
 						if (err)
 							throw err;
