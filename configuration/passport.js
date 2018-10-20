@@ -6,6 +6,7 @@ var GithubStrategy	= require('passport-github').Strategy;
 var SteamStrategy	= require('passport-steam').Strategy;
 var YammerStrategy	= require('passport-yammer').Strategy;
 var LinkedinStrategy	= require('passport-linkedin-oauth2').Strategy;
+var DailymotionStrategy = require('passport-dailymotion').Strategy;
 var User		= require('../Schema/user');
 var configFB		= require('./configFB');
 var configGO		= require('./configGO');
@@ -209,6 +210,33 @@ module.exports = function(passport) {
 					var newUser = new User();
 					newUser.linkedin.id = profile.id;
 					newUser.local.name = profile.formattedName;
+					newUser.save(function (err, newUser) {
+						if (err)
+							throw err;
+						return done(null, newUser);
+					});
+				}
+			});
+		});
+	}));
+
+	passport.use(new DailymotionStrategy({
+		clientID: "297160fcd4effc48108f",
+		clientSecret: "0bc52d4f1ccde794d00ba17af02499465bcdb3b8",
+		callbackURL: "http://localhost:8080/auth/dailymotion/callback"
+	},
+	function (token, refreshToken, profile, done) {
+		process.nextTick(function() {
+			User.findOne({ 'dailymotion.id': profile.id }, function (err, user) {
+				if (err)
+					return done(err);
+				if (user) {
+					return done(null, user);
+				}
+				else {
+					console.log(profile);
+					var newUser = new User();
+					newUser.dailymotion.id = profile.id;
 					newUser.save(function (err, newUser) {
 						if (err)
 							throw err;

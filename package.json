@@ -23,6 +23,7 @@
     "monk": "^6.0.5",
     "morgan": "~1.9.0",
     "passport": "~0.3.2",
+    "passport-dailymotion": "0.0.4",
     "passport-facebook": "~2.1.1",
     "passport-github": "^1.1.0",
     "passport-google": "^0.3.0",

@@ -23,7 +23,7 @@ var userSchema = mongoose.Schema({
 	github    		: {
 		id		: String
 	},
-	office365    		: {
+	dailymotion    		: {
 		id		: String
 	},
 	yammer    		: {

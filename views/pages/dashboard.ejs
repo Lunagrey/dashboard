@@ -45,7 +45,7 @@
 			</script>
 		</div>
 		<% } else { %>
-		<a href="settings#twitter">Click here set twitter to Display</a>
+		<a href="settings#twitter">Click here to display twitter feed</a>
 	<% } %>
 <% if (user.widgets.twitter.display_tweet) { %>
 		<div class="twitter-elem">
@@ -62,7 +62,7 @@
 			<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 		</div>
 		<% } else { %>
-			<a href="settings#twitter">Click here set twitter to Display</a>
+			<a href="settings#twitter">Click here to Display tweet</a>
 		<% } %>
 	</div>
 </div>
@@ -79,7 +79,7 @@
       </div>
 			<hr> 
 			<% } else { %>
-			<a href="settings#facebook">Click here set facebook to Display</a>
+			<a href="settings#facebook">Click here to display facebook page</a>
 		<% } %>	
 	<% if (user.widgets.facebook.display_page_com) { %>
 			
@@ -90,7 +90,7 @@
 			</div>
 		</div>
 		<% } else { %>
-			<a href="settings#facebook">Click here set facebook to Display</a>
+			<a href="settings#facebook">Click here to display facebook page</a>
 		<% } %>	
 	</div>
 </div>
@@ -117,7 +117,7 @@
 						margin-right: 50%;
 					}
 				</style>
-				<a href="settings#yammer">Click here set yammer to Display</a>
+				<a href="settings#yammer">Click here to display yammer user feed</a>
 			<% } %>	
 			<br>
 				<% if (user.widgets.yammer.display_group) { %>
@@ -136,7 +136,7 @@
 					</div>
 			</div>
 			<% } else { %>
-			<a href="settings#yammer">Click here set yammer to Display</a>
+			<a href="settings#yammer">Click here to display yammer group feed</a>
 		<% } %>	
   </div>
 
@@ -149,7 +149,7 @@
       </a>
 			<div id="awtd1539706660321" class="aw-widget-36hour"  data-locationkey="" data-unit="C" data-language="fr" data-useip="true" data-uid="awtd1539706660321" data-editlocation="true" data-lifestyle="biking"></div><script type="text/javascript" src="https://oap.accuweather.com/launch.js"></script>
 				<% } else { %>
-				<a href="settings#meteo">Click here set meteo to Display</a>
+				<a href="settings#meteo">Click here to display meteo</a>
 			<% } %>	
 	  </div>  
   </div> 
@@ -159,12 +159,12 @@
 			<% if (user.widgets.spotify.display_album) { %>
 			<iframe src=<%= spotify_album %> width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
 			<% } else { %>
-			<a href="settings#spotify">Click here set spotify to Display</a>
+			<a href="settings#spotify">Click here to display spotify album</a>
 			<% } %>	
 			<% if (user.widgets.spotify.display_artiste) { %>
 			<iframe src=<%= spotify_artist %> width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
 			<% } else { %>
-				<a href="settings#spotify">Click here set spotify to Display</a>
+				<a href="settings#spotify">Click here to display spotify artist</a>
 			<% } %>	
   </div>
 </div>
