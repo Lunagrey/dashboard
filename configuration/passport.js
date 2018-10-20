@@ -7,6 +7,7 @@ var SteamStrategy	= require('passport-steam').Strategy;
 var YammerStrategy	= require('passport-yammer').Strategy;
 var LinkedinStrategy	= require('passport-linkedin-oauth2').Strategy;
 var DailymotionStrategy = require('passport-dailymotion').Strategy;
+var DeezerStrategy	= require('passport-deezer').Strategy;
 var User		= require('../Schema/user');
 var configFB		= require('./configFB');
 var configGO		= require('./configGO');
@@ -240,6 +241,34 @@ module.exports = function(passport) {
 					var newUser = new User();
 					newUser.dailymotion.id = profile.id;
 					newUser.local.name = profile.dispkayName;
+					newUser.save(function (err, newUser) {
+						if (err)
+							throw err;
+						return done(null, newUser);
+					});
+				}
+			});
+		});
+	}));
+
+	passport.use(new DeezerStrategy({
+		clientID: "306964",
+		clientSecret: "c0d85d4c8a20397efaef3c04a0741c30",
+		callbackURL: "http://localhost:8080/auth/deezer/callback"
+	},
+	function (token, refreshToken, profile, done) {
+		process.nextTick(function() {
+			User.findOne({ 'deezer.id': profile.id }, function (err, user) {
+				if (err)
+					return done(err);
+				if (user) {
+					newUser.local.name = profile.name;
+					return done(null, user);
+				}
+				else {
+					var newUser = new User();
+					newUser.deezer.id = profile.id;
+					newUser.local.name = profile.name;
 					newUser.save(function (err, newUser) {
 						if (err)
 							throw err;

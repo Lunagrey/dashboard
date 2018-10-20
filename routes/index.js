@@ -63,10 +63,7 @@ module.exports = function(app, passport) {
 		}),
 	);
 
-	app.get('/auth/steam', passport.authenticate('steam'),
-  		function(req, res) {
-  	});
-
+	app.get('/auth/steam', passport.authenticate('steam'));
 	app.get('/auth/steam/return',
 		passport.authenticate('steam', {
 			successRedirect : '/dashboard', 
@@ -75,7 +72,6 @@ module.exports = function(app, passport) {
 	);
 
 	app.get('/auth/yammer', passport.authenticate('yammer'));
-
 	app.get('/auth/yammer/callback', 
   		passport.authenticate('yammer', {
 			successRedirect : '/dashboard', 
@@ -91,11 +87,17 @@ module.exports = function(app, passport) {
 		}),
 	);
 
-	app.get('/auth/dailymotion',
-  		passport.authenticate('dailymotion'));
-
+	app.get('/auth/dailymotion', passport.authenticate('dailymotion'));
 	app.get('/auth/dailymotion/callback',
   		passport.authenticate('dailymotion', {
+			successRedirect : '/dashboard', 
+			failureRedirect: '/login'
+		}),
+	);
+
+	app.get('/auth/deezer', passport.authenticate('deezer'));
+	app.get('/auth/deezer/callback',
+		passport.authenticate('deezer', {
 			successRedirect : '/dashboard', 
 			failureRedirect: '/login'
 		}),
