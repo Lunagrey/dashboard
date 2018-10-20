@@ -1,8 +1,7 @@
 FROM node:8.9-alpine
 ENV NODE_ENV production
+COPY package*.json ./
+RUN npm install
 WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
 COPY . .
-EXPOSE 8080
-CMD npm start
+CMD ./install.sh

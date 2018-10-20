@@ -1,225 +1,239 @@
  <!DOCTYPE html>
-<html>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-.w3-sidebar a {font-family: "Roboto", sans-serif}
-body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-</style>
-
-
 <head>
-
-<style>
-.boutonmenuprincipal {
-background-color: #729EBF;
-background-image: -webkit-linear-gradient(top, #729EBF 0%, #333A40 100%);
-background-image:linear-gradient(to bottom, #729EBF 0%, #333A40 100%);
-color: white;
-border: none;
-cursor: pointer;
-padding:10px;
-margin-top:10px;
-font-size: 10px;
-}
-.boutonmenuprincipal:hover {
-background-color: #ff4444;
-}
-.dropdown {
-position: relative;
-display: inline-block;
-}
-.dropdown-child {
-display: none;
-background-color: #65537A;
-background-image:-webkit-linear-gradient(top, #65537A 0%, #2A2333 100%);
-background-image:linear-gradient(to bottom, #65537A 0%, #2A2333 100%);
-min-width: 10px;
-}
-.dropdown-child a {
-color: white;
-padding: 10px;
-text-decoration: none;
-display: block;
-}
-.dropdown:hover .dropdown-child {
-display: block;
-}
-</style>
+	<% include ../partials/head2 %>
 </head>
 
+<style>
+	input[type=text], select, textarea {
+	    width: 100%; /* Full width */
+	    padding: 12px; /* Some padding */  
+	    border: 1px solid #ccc; /* Gray border */
+	    border-radius: 4px; /* Rounded borders */
+	    box-sizing: border-box; /* Make sure that padding and width stays in place */
+	    margin-top: 6px; /* Add a top margin */
+	    margin-bottom: 16px; /* Bottom margin */
+	    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+	}
+
+	input[type=submit] {
+	    color: white;
+	    padding: 12px 20px;
+	    border: none;
+	    border-radius: 4px;
+	    cursor: pointer;
+	}
+
+	.submit-facebook {
+		background-color: #4CAF50;
+	}
+
+	.submit-twitter {
+		background-color: yellow;
+	}
+
+	.submit-yammer {
+		background-color: red;
+	}
+
+	.submit-meteo {
+		background-color: black;
+		color: white;
+	}
+
+	.submit-spotify {
+		background-color: blue;
+	}
+
+	input[type=submit]:hover {
+	    background-color: #45a049;
+	}
+
+	.container {
+	    border-radius: 5px;
+	    background-color: #f2f2f2;
+	    padding: 20px;
+	}
+
+	.double_label{
+		display : inline-block;
+		width: 100%;
+	}
+	.double_label .label{
+		width: 48%;
+		float:left;
+	}
+	.double_label 1 {
+		margin-rigth: 30px;
+	}
+</style>
+
 <body>
-  <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:15%" id="mySidebar">
-    <div class="w3-container w3-display-container w3-padding-16">
-      <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-      <h3 class="w3-wide"><b>Dashboard</b></h3>
-    </div>
-    <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
-      <a href="#facebook" class="w3-bar-item w3-button">Facebook</a>
-      <a href="#twitter" class="w3-bar-item w3-button">twitter</a>
-      <a href="#yammer" class="w3-bar-item w3-button">Yammer</a>
-      <a href="#meteo" class="w3-bar-item w3-button">Meteo</a>
-    </div>
-    <a href="settings" class="w3-bar-item w3-button w3-padding">settings</a>
-  </nav>
+	<header>
+		<% include ../partials/header %>
+	</header>
 
-  <div style="
-	      position:relative;
-	      left: 15%;">
-    <div class="w3-container w3-green">
-      <h1>Welcome to the settings page</h1>
-      <p>enable, modify and disable widgets</p>
-    </div>
-  </div>
+	<div>
+		<div class="w3-container w3-center w3-green" style="padding-top: 300px; padding-bottom: 300px;">
+			<h1>WELCOME TO THE SETTINGS PAGE</h1>
+			<p>HIDE, MODIFY AND DISPLAY WIDGETS</p>
+		</div>
+	</div>
 
-  
-  <div class="w3-row-padding">
-    
-    <div style="
-		display: inline-block;
-		position: relative;
-		left: 15%;
-		margin: auto;"
-         id="facebook">
-      <div class="w3-fourth">
-	<h2>Facebook widgets</h2>
-	<p>enable and disable here</p>
-	<div class="dropdown">
-	  <button class="boutonmenuprincipal">facebook timeline</button>
-	  <div class="dropdown-child">
-	    <a href="#">enabled</a>
-	    <a href="#">disabled</a>
-	  </div>
-	</div>
-	<div class="dropdown">
-	  <button class="boutonmenuprincipal">facebook messages</button>
-	  <div class="dropdown-child">
-	    <a href="#">enabled</a>
-	    <a href="#">disabled</a>
-	  </div>
-	</div>
-	<p>change page to prompt</p>
-	<form action="/settings" method="post">
-          <div class="form-group">
-            <label>timeline to show</label>
-            <input type="text" class="form-control" name="email">
-          </div>
-          <div class="form-group">
-            <label>message to show</label>
-            <input type="password" class="form-control" name="password">
-          </div>
-          <button type="submit" class="btn btn-warning btn-lg">Upload</button>
-	</form>
-      </div>
-    </div>
-    
-    <div style="
-                display: inline-block;
-                position: relative;
-                left: 30%;
-                margin: auto;"
-	 id="twitter">
-      <div class="w3-fourth">
-	<h2>Twitter widgets</h2>
-	<p>enable and disable here</p>
-	<div class="dropdown">
-	  <button class="boutonmenuprincipal">twitter feed</button>
-	  <div class="dropdown-child">
-            <a href="#">enabled</a>
-            <a href="#">disabled</a>
-	  </div>
-	</div>
-	<div class="dropdown">
-	  <button class="boutonmenuprincipal">embed tweet</button>
-	  <div class="dropdown-child">
-            <a href="#">enabled</a>
-            <a href="#">disabled</a>
-	  </div>
-	</div>
-	<p>change page to prompt</p>
-        <form action="/settings" method="post">
-          <div class="form-group">
-            <label>feed to show</label>
-            <input type="text" class="form-control" name="email">
-          </div>
-          <div class="form-group">
-            <label>tweet to show</label>
-            <input type="password" class="form-control" name="password">
-          </div>
-          <button type="submit" class="btn btn-warning btn-lg">Upload</button>
-        </form>
-      </div>
-    </div>
-    
-    
-    
-    <div style="
-                display: inline-block;
-                position: relative;
-		top:400px;
-                right: 23%;
-                margin: auto;"
-	 id="yammer">
-      <div class="w3-fourth">
-	<h2>Yammer widgets</h2>
-	<p>enable and disable here</p>
-	<div class="dropdown">
-	  <button class="boutonmenuprincipal">yammer timeline</button>
-	  <div class="dropdown-child">
-	    <a href="#">enabled</a>
-	    <a href="#">disabled</a>
-	  </div>
-	</div>
-	<div class="dropdown">
-	  <button class="boutonmenuprincipal">yammer page</button>
-	  <div class="dropdown-child">
-	    <a href="#">enabled</a>
-	    <a href="#">disabled</a>
-	  </div>
-	</div>
-	<p>change page to prompt</p>
-        <form action="/settings" method="post">
-          <div class="form-group">
-            <label>timeline to show</label>
-            <input type="text" class="form-control" name="email">
-          </div>
-          <div class="form-group">
-            <label>username to show</label>
-            <input type="password" class="form-control" name="password">
-          </div>
-          <button type="submit" class="btn btn-warning btn-lg">Upload</button>
-        </form>
-      </div>
-    </div>
+	<div class="w3-content" style="max-width:2000px;margin-top:46px">
 
-    
-    <div style="
-                display: inline-block;
-                position: relative;
-		top: 250px;
-                right: 10%;
-                margin: auto;"
-	 id="meteo">
-      <div class="w3-fourth">
-	<h2>Meteo widget</h2>
-	<p>enable and disable here</p>
-	<div class="dropdown">
-	  <button class="boutonmenuprincipal">meteo widgets</button>
-	  <div class="dropdown-child">
-	    <a href="#">enabled</a>
-	    <a href="#">disabled</a>
-	  </div>
+	<!-- The Band Section -->
+	<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="facebook">
+		<h2>FACEBOOK WIDGETS</h2>
+		<form action="/settings" method="post">
+    			<label for="fname">Link to page</label>
+			<input type="text" id="fname" name="FBpage" placeholder="ex: https://www.facebook.com/groups/Epitech2021/...">
+			<label for="fname">Link to commentary</label>
+			<input type="text" id="fname" name="FBpage_com" placeholder="ex: https://www.facebook.com/groups/Epitech2021/...">
+			<div class="double_label">
+			    	<div class="label" style="margin-right: 4%">
+				<label for="country">Page statu</label>
+					<select name="FBpagestatus">
+						<option value="Display">Display</option>
+					    	<option value="Hide">Hide</option>
+				    	</select>
+				</div>
+				<div class="label">
+				<label for="country">Page com status</label>
+					<select name="FBpagecomstatus">
+						<option value="Display">Display</option>
+						<option value="Hide">Hide</option>
+					</select>
+				</div>
+		    	</div>
+			<input type="submit" value="Submit" class="submit-facebook">
+		</form>
 	</div>
-</p>
+
+	<!-- The Tour Section -->
+	<div class="w3-black" id="twitter">
+	<div class="w3-container w3-center w3-content w3-padding-64" style="max-width:800px">
+		<h2 class="w3-wide w3-center">TWITTER WIDGETS</h2>
+		<form action="/settings" method="post">
+    			<label for="fname">Link to page</label>
+    			<input type="text" id="fname" name="TTpage" placeholder="ex: https://twitter.com/Madonna...">
+			<label for="fname">Link to tweet</label>
+    			<input type="text" id="fname" name="TTtweet" placeholder="ex: https://twitter.com/Madonna/status/1052601086908006405...">
+		    	<div class="double_label">
+			    	<div class="label" style="margin-right: 4%">
+				<label for="country">Page statu</label>
+					<select name="TTpagestatus">
+						<option value="Display">Display</option>
+					    	<option value="Hide">Hide</option>
+				    	</select>
+				</div>
+				<div class="label">
+				<label for="country">Tweet status</label>
+					<select name="TTtweetstatus">
+						<option value="Display">Display</option>
+						<option value="Hide">Hide</option>
+					</select>
+				</div>
+		    	</div>
+    			<input type="submit" value="Submit" class="submit-twitter">
+  		</form>
+	</div>
+	</div>
+
+	<!-- Ticket Modal -->
+	<div id="yammer" class="w3-container w3-center w3-content w3-padding-64">
+	<div class="w3-fourth">
+		<h2>YAMMER WIDGETS</h2>
+		<form action="/settings" method="post">
+    			<label for="fname">User feed to see</label>
+			    <input type="text" id="fname" name="YMfeeduser" placeholder="Id of the epitech user...">
+			<label for="fname">Group feed to see</label>
+				    <input type="text" id="fname" name="YMfeedgroup" placeholder="Id of the epitech group...">
+			<div class="double_label">
+				<div class="label" style="margin-right: 4%">
+    				<label for="country">User statu</label>
+    					<select id="country" name="YMuserstatus">
+					    	<option value="Display">Display</option>
+						<option value="Hide">Hide</option>
+					</select>
+				</div>
+				<div class="label">
+					<label for="country">Group status</label>
+    					<select id="country" name="YMgroupstatus">
+					    	<option value="Display">Display</option>
+						<option value="Hide">Hide</option>
+					</select>
+				</div>
+			</div>
+			<input type="submit" value="Submit" class="submit-yammer">
+		</form>
+	</div>
+	</div>
+
+	<!-- The Contact Section -->
+	<div class="w3-grey" id="meteo">
+	<div class="w3-container w3-center w3-content w3-padding-64" style="max-width:800px;" id="contact">
+		<h2 class="w3-wide w3-center">METEO WIDGET</h2>
+		<form action="/settings" method="post">
+    			<label for="status">Status</label>
+			<select id="status" name="MTstatus">
+				<option value="Display">Display</option>
+				<option value="Hide">Hide</option>
+    			</select>
+    			<input type="submit" value="Submit" class="submit-meteo">
+  		</form>
+	</div>
+	</div>
+
+	<div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px" id="spotify">
+		<h2>SPOTIFY WIDGETS</h2>
+		<form action="/settings" method="post">
+    			<label for="fname">Artiste</label>
+			<input type="text" id="fname" name="SPartiste" placeholder="artist ID...">
+			<label for="fname">Album</label>
+			<input type="text" id="fname" name="SPalbum" placeholder="album ID...">
+			<div class="double_label">
+				<div class="label" style="margin-right: 4%">
+    				<label for="country">Album statu</label>
+    					<select id="country" name="SPalbumstatus">
+					    	<option value="Display">Display</option>
+						<option value="Hide">Hide</option>
+					</select>
+				</div>
+				<div class="label">
+					<label for="country">Artist status</label>
+    					<select id="country" name="SPartiststatus">
+					    	<option value="Display">Display</option>
+						<option value="Hide">Hide</option>
+					</select>
+				</div>
+			</div>
+			<input type="submit" value="Submit" class="submit-spotify">
+		</form>
+	</div>
+	
+<!-- End Page Content -->
+	<% include ../partials/footer %>
 </div>
-</div>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=myMap"></script>
 
-  </div>
+	<script>
+	// Used to toggle the menu on small screens when clicking on the menu button
+	function myFunction() {
+			var x = document.getElementById("navDemo");
+			if (x.className.indexOf("w3-show") == -1) {
+					x.className += " w3-show";
+			} else { 
+					x.className = x.className.replace(" w3-show", "");
+			}
+	}
+	
+	// When the user clicks anywhere outside of the modal, close it
+	var modal = document.getElementById('ticketModal');
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+	</script>
 </body>
 </html> 
