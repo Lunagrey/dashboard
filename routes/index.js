@@ -205,8 +205,6 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/profil', isLoggedIn, function(req, res) {
-		console.log(req.user);
-		console.log("oui");
 		res.render('profil.ejs', {
 			user: req.user
 		}); 

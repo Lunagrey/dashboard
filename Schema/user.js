@@ -27,7 +27,8 @@ var userSchema = mongoose.Schema({
 		id		: String
 	},
 	yammer    		: {
-		id		: String
+		id		: String,
+		network		: String
 	},
 	linkedin    		: {
 		id		: String
