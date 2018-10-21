@@ -27,12 +27,19 @@ var userSchema = mongoose.Schema({
 		id		: String
 	},
 	yammer    		: {
-		id		: String
+		id		: String,
+		network		: String
 	},
 	linkedin    		: {
 		id		: String
 	},
 	steam   		: {
+		id		: String
+	},
+	deezer   		: {
+		id		: String
+	},
+	twitch   		: {
 		id		: String
 	},
 	widgets   		: {
